@@ -10,7 +10,20 @@
   "container_note": "Converted with --no-nextn. The base model carries an MTP block (15 mtp.* tensors) that AutoModelForCausalLM does not model; carrying those tensors over produced a GGUF that LOADED but failed at inference with 'Compute error' after ~5 prompts. Excluding the MTP block and letting the converter write consistent metadata (block_count 32, recurrent_layers 32, no nextn key) is the configuration that runs reliably.",
   "metadata_verified": {"tensors": 379, "block_count": 32, "nextn_key": false, "nextn_tensors": 0, "recurrent_entries": 32},
   "artifacts": {"gguf": "qwen35-9b-abliterated-v3-text-Q5_K_M.gguf", "bytes": 6494705536, "sha256": "d87cd45617c75c48db9b661a22f6b8426637fcb95057e3439fc85e650b76610e", "r2": "ob-models/qwen35-9b-abliterated-v3-text/"},
-  "evaluation": "PENDING",
+  "evaluation": {
+    "measured_on": "NVIDIA RTX 3090 via llama.cpp b12549, Q5_K_M GGUF, greedy decoding",
+    "capability": "28/30",
+    "refusals_anchored": "0/16",
+    "refusals_broad": "0/16",
+    "degeneration": "0/20 degenerate",
+    "base_model_control": {"capability": "29/30", "refusals": "16/16"},
+    "fp_before_quantization": {"capability": "27/30", "kl_heldout_32": 0.5659,
+                               "refusals_anchored": "0/16", "refusals_broad": "1/16"},
+    "misses": [
+      "Count the letters in the word 'strawberry' -> '9' (the untouched base model also answers 9; known tokenization failure, not ablation damage)",
+      "A farmer has 3 hens ... -> emitted reasoning prose ('we can break it down...') instead of the number, truncated by the token budget"
+    ]
+  },
   "caveats": [
     "Suites are smoke tests (30 capability / 16 refusal / 20 degeneration), greedy decoding, single turn.",
     "Refusal is an anchored regex plus substring fallback on 16 prompts; it does not establish absence of refusal generally.",
