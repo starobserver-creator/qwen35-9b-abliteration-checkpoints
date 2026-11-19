@@ -35,3 +35,8 @@ across both models.
   strawberry→"9" miss also fails on the untouched base model, and `xs.reverse()` is valid Python
   even though a naive substring check rejected it.
 - Suites are smoke tests, not benchmarks. Greedy decoding, single turn.
+
+v1 (`qwen35-9b-abl-s225-Q5_K_M.gguf`, sha256 `94c05da17891e31be176592afa88a5ee8bf03403f896ff1ba802da6f46c74128`,
+6,494,705,568 bytes) was verified locally alongside v2 (see table above) and then deleted
+on request as superseded. It is not recoverable: the source model was removed with the GPU
+instance and the v1 R2 bucket was purged.
