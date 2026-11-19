@@ -85,6 +85,62 @@ base-model control is the better guide: at matched settings the abliterated mode
 matches base (29/30), but a stricter reading of the 8-prompt numbers is that refusal
 *granularity* was too coarse to resolve the knee of the curve.
 
+## v3 — MTP attempt and the container fix
+
+Adding the base model's multi-token-prediction block turned out to be a dead end worth
+documenting, because it explains both the earlier LM Studio failure and why the final
+artifact is text-only.
+
+**What the base model actually contains:** `Qwen3_5ForConditionalGeneration` ships **775
+tensors**, including **15 `mtp.*` tensors** (`mtp.fc`, `mtp.layers.0.*`, `mtp.norm`, ...).
+The abliteration pipeline loads `AutoModelForCausalLM`, which does not model the MTP block,
+so `save_pretrained()` silently dropped those 15 tensors while `config.json` still reported
+`mtp_num_hidden_layers = 1`. The converter then emitted `block_count = 33`,
+`nextn_predict_layers = 1` and a 33-entry `recurrent_layers` array, with **no** MTP tensors
+behind them.
+
+### Why LM Studio could not load v2
+
+```
+src/models/qwen35.cpp:523: GGML_ASSERT(layer.nextn.eh_proj && "MTP block missing nextn.eh_proj")
+  graph_mtp -> build_arch_graph -> graph_reserve -> llama_init_from_model
+  -> common_params_fit_impl -> common_fit_apply
+```
+
+LM Studio always runs `common_fit_apply`, which reserves the MTP graph and aborted on the
+missing tensor. Plain `llama-server -c 8192` never reserves that graph, which is why the file
+appeared to work for us and not for LM Studio. Metadata-only patches cannot fix this: shortening
+`recurrent_layers` to 32 bytes-to-32-entries requires rewriting the whole file, and every partial
+patch just moves the error (`blk.32.attn_norm.weight not found` →
+`recurrent_layers has wrong array length; expected 32, got 33`).
+
+### What happened when MTP was actually added
+
+Carrying the 15 tensors over (`mtp.fc` → `blk.32.nextn.eh_proj`, etc.) produced a GGUF with
+**394 tensors, block_count 33, nextn_predict_layers 1** and all four nextn tensors present.
+It then **loaded successfully** — both in LM Studio and in llama-server — but **failed at
+inference** with `Compute error` / `ggml_backend_sched_graph_compute_async failed` after roughly
+five prompts. So the MTP graph is not merely under-specified in our export; it does not run.
+
+### Shipped: text-only with consistent metadata
+
+Converting the same abliterated weights with `--no-nextn` lets the converter write metadata that
+matches the tensors:
+
+| | v2 (shipped, broken metadata) | **v3-text (shipped)** |
+|---|---|---|
+| tensors | 379 | 379 |
+| `block_count` | 33 | **32** |
+| `nextn_predict_layers` | 1 (no tensors) | **absent** |
+| `recurrent_layers` entries | 33 | **32** |
+| loads in LM Studio | no (assert) | **yes** |
+| runs | yes (llama-server) | **yes (both)** |
+
+Artifact: `qwen35-9b-abliterated-v3-text-Q5_K_M.gguf`, 6,494,705,536 bytes,
+SHA-256 `d87cd45617c75c48db9b661a22f6b8426637fcb95057e3439fc85e650b76610e`,
+hosted at `r2:ob-models/qwen35-9b-abliterated-v3-text/` (single object, 6.049 GiB).
+Degeneration suite on this exact hash: **0/20**.
+
 ### Caveats
 
 - 30 capability prompts, 16 refusal prompts, 20 degeneration prompts: smoke tests, not benchmarks.

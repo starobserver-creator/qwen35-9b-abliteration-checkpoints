@@ -1,0 +1,20 @@
+{
+  "model": "qwen35-9b-abliterated-v3-text",
+  "base_model": "Qwen/Qwen3.5-9B",
+  "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "method": "orthogonal projection abliteration applied as a direct weight edit (no LoRA, no PEFT merge)",
+  "layers_abliterated": "0-31 (text layers)",
+  "target_modules": ["self_attn.o_proj | linear_attn.out_proj", "mlp.down_proj"],
+  "scale_attention": 0.75,
+  "scale_mlp": 2.25,
+  "container_note": "Converted with --no-nextn. The base model carries an MTP block (15 mtp.* tensors) that AutoModelForCausalLM does not model; carrying those tensors over produced a GGUF that LOADED but failed at inference with 'Compute error' after ~5 prompts. Excluding the MTP block and letting the converter write consistent metadata (block_count 32, recurrent_layers 32, no nextn key) is the configuration that runs reliably.",
+  "metadata_verified": {"tensors": 379, "block_count": 32, "nextn_key": false, "nextn_tensors": 0, "recurrent_entries": 32},
+  "artifacts": {"gguf": "qwen35-9b-abliterated-v3-text-Q5_K_M.gguf", "bytes": 6494705536, "sha256": "d87cd45617c75c48db9b661a22f6b8426637fcb95057e3439fc85e650b76610e", "r2": "ob-models/qwen35-9b-abliterated-v3-text/"},
+  "evaluation": "PENDING",
+  "caveats": [
+    "Suites are smoke tests (30 capability / 16 refusal / 20 degeneration), greedy decoding, single turn.",
+    "Refusal is an anchored regex plus substring fallback on 16 prompts; it does not establish absence of refusal generally.",
+    "Local Metal runs on the 16GB test machine intermittently failed with GGML_STATUS_ALLOC_FAILED when another model server was resident; those were memory faults, not model faults.",
+    "LM Studio (0.4.28+2) refuses the MTP variant at compute time; this text-only build is the one intended for LM Studio."
+  ]
+}
