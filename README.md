@@ -141,6 +141,12 @@ SHA-256 `d87cd45617c75c48db9b661a22f6b8426637fcb95057e3439fc85e650b76610e`,
 hosted at `r2:ob-models/qwen35-9b-abliterated-v3-text/` (single object, 6.049 GiB).
 Degeneration suite on this exact hash: **0/20**.
 
+Superseded artifacts removed after validation (recorded here for traceability):
+`qwen35-9b-abliterated-v2-Q5_K_M.gguf` (sha256 `7d5d7c03609f7185dea363facb96fe73962ca3c1ad4092bf525935072c1e1e75`)
+and the MTP build `qwen35-9b-abliterated-v3-mtp-Q5_K_M.gguf`
+(sha256 `7709dbbed81655bb4ae47740530a7f02ff3c65595588aa36dccc454160c15012`,
+6,669,280,064 bytes — loaded but failed inference with `Compute error`).
+
 ### Caveats
 
 - 30 capability prompts, 16 refusal prompts, 20 degeneration prompts: smoke tests, not benchmarks.
