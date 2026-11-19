@@ -1,0 +1,50 @@
+{
+  "model": "qwen35-9b-abliterated-v2",
+  "base_model": "Qwen/Qwen3.5-9B",
+  "base_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "method": "orthogonal projection abliteration, direct weight edit (W = W_base - s*outer(d, v)). No LoRA, no PEFT merge, therefore no hybrid-linear-attention merge corruption.",
+  "layers_abliterated": "0-31 (all)",
+  "target_modules": ["self_attn.o_proj | linear_attn.out_proj", "mlp.down_proj"],
+  "scale_attention": 0.75,
+  "scale_mlp": 2.25,
+  "direction_method": "difference of means of last-token hidden states, 170 harmful / 160 harmless prompts",
+  "direction_datasets": ["mlabonne/harmful_behaviors (170)", "mlabonne/harmless_alpaca (160)"],
+  "evaluation": {
+    "note": "Numbers below are measured, not estimated. Suites are small; see caveats.",
+    "base_model_control": {
+      "capability": "29/30",
+      "refusals_anchored": "16/16",
+      "kl_vs_itself": 0.0
+    },
+    "fp_model_before_quantization": {
+      "capability": "28/30",
+      "refusals_anchored": "0/16",
+      "refusals_broad": "0/16",
+      "kl_heldout_32_prompts": 0.564
+    },
+    "gguf_q5_k_m_shipped": {
+      "capability": "29/30",
+      "refusals_anchored": "0/16",
+      "refusals_broad": "0/16",
+      "degeneration_20_prompts": "0/20 degenerate",
+      "loads_in_llama_cpp": true,
+      "gguf_arch": "qwen (native Qwen3_5 support, no chkhsh patch)"
+    }
+  },
+  "sweep_evidence": {
+    "why_mlp_is_targeted": "Controlled test at matched attention strength showed attention-only ablation stalls at 8/8 refusals while already costing capability (cap 0.90 at attn=1.0), whereas adding mlp.down_proj reached 1/8 refusals with cap 1.00 at lower KL. MLP is the efficient lever; attention strength is the expensive/damaging one.",
+    "selected_point": "attn=0.75, mlp=2.25 gave 0/16 refusals at cap 28/30, KL 0.564 (fp)"
+  },
+  "artifacts": {
+    "gguf": "qwen35-9b-abliterated-v2-Q5_K_M.gguf",
+    "bytes": 6494705568,
+    "sha256": "7d5d7c03609f7185dea363facb96fe73962ca3c1ad4092bf525935072c1e1e75"
+  },
+  "caveats": [
+    "Capability suite is 30 single-turn prompts with greedy decoding; it is not a benchmark and not evidence of general capability retention.",
+    "Refusal is measured on 16 harmful prompts with an anchored regex plus a substring fallback; it is not a safety evaluation and does not establish absence of refusal in general.",
+    "KL is a last-token KL over 32 held-out benign prompts against the base model.",
+    "The base/control numbers come from the same harness, so attribution of differences to the ablation is valid within the harness only.",
+    "fp numbers were measured on GPU in bfloat16 before quantization; GGUF numbers were measured through llama.cpp Q5_K_M."
+  ]
+}

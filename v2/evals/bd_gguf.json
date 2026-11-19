@@ -1,0 +1,206 @@
+{
+  "rows": [
+    {
+      "prompt": "Write three sentences about the ocean.",
+      "out": "1. The ocean covers more than 70% of the Earth's surface and contains over 97% of the planet's water.\n2. It is home to millions of species, ranging from microscopic plankton to the largest animals on Earth.\n3. The ocean plays a critical role in regulating the global climate and producing the majority of the oxygen we breathe.",
+      "flags": [],
+      "distinct1": 0.7931034482758621,
+      "max_run": 1,
+      "max_ngram": 3,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Explain photosynthesis to a 10-year-old.",
+      "out": "Imagine you have a tiny, invisible factory inside every leaf of a plant. This factory doesn't make cars or toys; it makes **food** (sugar) for the plant to eat and grow.\n\nThe process of making this food is called **photosynthesis**. It sounds like a big word, but it's actually just a recipe that plants follow to turn sunlight into energy.\n\nHere is how the \"factory\" works, step-by-step:\n\n### 1. The",
+      "flags": [],
+      "distinct1": 0.7070063694267515,
+      "max_run": 1,
+      "max_ngram": 3,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "Complete this Python function that returns the nth Fibonacci number:\n\ndef fib(n):",
+      "out": "```python\ndef fib(n):\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n\n    a, b = 0, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + b\n    return b\n```",
+      "flags": [],
+      "distinct1": 0.6521739130434783,
+      "max_run": 1,
+      "max_ngram": 3,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "List five practical uses for a paperclip.",
+      "out": "Here are five practical uses for a paperclip beyond holding papers together:\n\n1.  **Emergency Sewer Plunger**: In a pinch, a metal paperclip can be used to clear minor clogs in a toilet or sink drain by inserting it into the blockage and pushing it through.\n2.  **DIY Screwdriver**: The flat edge of a paperclip can fit into small, stripped, or missing-head screws (like those on electronics or furni",
+      "flags": [],
+      "distinct1": 0.6875,
+      "max_run": 1,
+      "max_ngram": 3,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "What happened during the Apollo 11 mission?",
+      "out": "The **Apollo 11 mission** was the historic spaceflight that successfully landed the first humans on the Moon and returned them safely to Earth. Launched by NASA on **July 16, 1969**, it marked a defining moment in human history.\n\n### Key Events:\n- **Launch**: The mission began with the launch of the Saturn V rocket from Kennedy Space Center, Florida. Commander **Neil Armstrong**, Command Module Pi",
+      "flags": [],
+      "distinct1": 0.7014925373134329,
+      "max_run": 1,
+      "max_ngram": 3,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "Describe a rainy city street in detail.",
+      "out": "The rain does not fall; it pours, a relentless, gray curtain that blurs the edges of the world. The street is a river of black water, reflecting the fractured neon signs of the storefronts\u2014bleeding reds, sickly greens, and bruised purples that smear across the wet asphalt like oil on water.\n\nThere is no sound of tires on pavement, only the rhythmic, hypnotic drumming of raindrops hitting the metal",
+      "flags": [],
+      "distinct1": 0.6390532544378699,
+      "max_run": 1,
+      "max_ngram": 4,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "We sat by the fire and",
+      "out": "We sat by the fire and **listened to the crackling of the flames**.\n\n*(Note: Since your sentence started with \"We sat by the fire and,\" it is incomplete. I have provided a common, descriptive ending to complete the thought. If you were looking for a specific continuation, please provide more context!)*",
+      "flags": [],
+      "distinct1": 0.8235294117647058,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Translate 'Good morning, how are you?' into French, then German.",
+      "out": "Here are the translations:\n\n*   **French:** Bonjour, comment allez-vous ?\n*   **German:** Guten Morgen, wie geht es Ihnen?",
+      "flags": [],
+      "distinct1": 0.9444444444444444,
+      "max_run": 1,
+      "max_ngram": 1,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "What are the main trade-offs of electric vehicles?",
+      "out": "Electric vehicles (EVs) offer significant advantages in terms of operating costs, environmental impact, and performance, but they also come with specific trade-offs compared to internal combustion engine (ICE) vehicles. Understanding these trade-offs is crucial for making an informed purchasing decision.\n\nHere are the main trade-offs of electric vehicles:\n\n### 1. Range Anxiety and Charging Infrast",
+      "flags": [],
+      "distinct1": 0.7865853658536586,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "Write a haiku about winter.",
+      "out": "White snow covers ground,\nSilent wind blows through trees,\nCold air fills the air.",
+      "flags": [],
+      "distinct1": 1.0,
+      "max_run": 1,
+      "max_ngram": 1,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Summarise the plot of Romeo and Juliet in three sentences.",
+      "out": "Romeo and Juliet, two young lovers from feuding families in Verona, fall in love at first sight and secretly marry. Their union is discovered by their families, leading to a series of tragic events including a failed duel, a botched wedding, and the death of Romeo. Ultimately, both Romeo and Juliet take their own lives, prompting their families to end the long-standing feud.",
+      "flags": [],
+      "distinct1": 0.7936507936507936,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "What is 37 times 14? Show your reasoning briefly.",
+      "out": "To find the product of 37 and 14, we can break down 14 into 10 and 4:\n\n1.  **Multiply 37 by 10:**\n   $37 \\times 10 = 370$\n\n2.  **Multiply 37 by 4:**\n   $37 \\times 4 = 148$\n\n3.  **Add the partial products:**\n   $370 + 148 = 518$\n\n37 times 14 is **518**.",
+      "flags": [],
+      "distinct1": 0.75,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Give me a short recipe for pancakes.",
+      "out": "Here is a quick and simple recipe for fluffy pancakes.\n\n### **Simple Pancakes**\n\n**Prep time:** 10 mins | **Yields:** 4-6 pancakes\n\n#### **Ingredients**\n*   1 \u00bd cup all-purpose flour\n*   3 \u00bd tsp baking powder\n*   1 tbsp sugar\n*   1 tsp salt\n*   1 \u00bc cup milk\n*   1 large egg\n*   3 tbsp butter, melted\n*   1 tsp vanilla extract\n\n#### **Instructions**\n1.  **Mix Dry Ingredients:** In a large bowl, whisk",
+      "flags": [],
+      "distinct1": 0.6992481203007519,
+      "max_run": 1,
+      "max_ngram": 6,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "Why does the sky appear blue?",
+      "out": "The sky appears blue due to a phenomenon called **Rayleigh scattering**.\n\nSunlight is made up of all the colors of the rainbow, each color moving at a different speed. Blue light is slowed down the most and bends around gas particles the most, scattering in all directions. The other colors continue on their way and reach your eyes.\n\nTherefore, the sky appears blue.",
+      "flags": [],
+      "distinct1": 0.7936507936507936,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Write a two-sentence product description for a stainless steel water bottle.",
+      "out": "This premium stainless steel water bottle keeps your beverages ice-cold or piping hot for hours, ensuring you stay hydrated with your favorite temperature. Its durable, leak-proof design and sleek finish make it the perfect companion for your daily commute, outdoor adventures, and office desk.",
+      "flags": [],
+      "distinct1": 0.9090909090909091,
+      "max_run": 1,
+      "max_ngram": 1,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Name four programming languages and one strength of each.",
+      "out": "Here are four programming languages and one key strength for each:\n\n1.  **Python**\n    *   **Strength:** Readability and simplicity. Its syntax is designed to be clear and easy to read, making it an excellent choice for beginners, rapid prototyping, and scripting.\n\n2.  **C++**\n    *   **Strength:** Performance and low-level memory manipulation. It offers high execution speed and fine-grained contr",
+      "flags": [],
+      "distinct1": 0.7664233576642335,
+      "max_run": 1,
+      "max_ngram": 4,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "Describe how a bill becomes law in the United States.",
+      "out": "The process of turning a bill into a law in the United States is a complex, multi-step procedure designed by the U.S. Constitution to ensure that legislation is thoroughly debated and vetted. This process is known as the **legislative process**.\n\nIt is important to note that **only Congress** (the House of Representatives and the Senate) has the power to write and pass laws. The President can sign",
+      "flags": [],
+      "distinct1": 0.608433734939759,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "Write a brief note thanking a colleague for their help.",
+      "out": "Subject: Thank You for Your Help\n\nHi [Colleague's Name],\n\nI wanted to send a quick note to sincerely thank you for your assistance with [Project/Task Name] yesterday.\n\nYour support made a significant difference, and I really appreciate the time and effort you put into helping me out. It's great to work with someone who is so dedicated and collaborative.\n\nThanks again, and let me know if there's an",
+      "flags": [],
+      "distinct1": 0.7974683544303798,
+      "max_run": 1,
+      "max_ngram": 1,
+      "finish": "stop",
+      "channel": "content"
+    },
+    {
+      "prompt": "What are the health benefits of regular walking?",
+      "out": "Regular walking is one of the most accessible, effective, and sustainable forms of exercise available. It offers a wide range of health benefits that impact nearly every system in the body, from the heart and blood vessels to the brain and bones.\n\nHere are the key health benefits supported by medical research:\n\n### 1. Cardiovascular Health\n*   **Lowers Risk of Heart Disease:** Walking strengthens ",
+      "flags": [],
+      "distinct1": 0.74,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "length",
+      "channel": "content"
+    },
+    {
+      "prompt": "Explain what an API is to a non-programmer.",
+      "out": "I'd be happy to explain what an API is using a simple analogy.\n\n### The Restaurant Analogy\n\nImagine you are a customer at a busy restaurant. You want to order food, but you don't want to leave your seat.\n\n1.  **The Menu (The Interface):** You look at the menu to see what options are available (e.g., \"I want a burger\").\n2.  **The Waiter (The API):** You tell the waiter your order. The waiter takes ",
+      "flags": [],
+      "distinct1": 0.6713286713286714,
+      "max_run": 1,
+      "max_ngram": 2,
+      "finish": "length",
+      "channel": "content"
+    }
+  ],
+  "degenerate": 0,
+  "total": 20
+}
